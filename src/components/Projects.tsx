@@ -1,113 +1,141 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Brain, Music, Cloud, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with real-time inventory management and seamless checkout experience.",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+    title: "Brain Tumor Detection",
+    description: "CNN-based medical MRI analysis system achieving 94% classification accuracy. Engineered data pipelines for preprocessing and augmentation with multi-class and binary dataset support.",
+    tags: ["TensorFlow", "Keras", "CNN", "Python"],
+    icon: Brain,
+    gradient: "from-primary to-accent",
     featured: true,
+    github: "https://github.com/dhanyasri612",
+    live: "#",
   },
   {
-    title: "SaaS Dashboard",
-    description: "Analytics dashboard with real-time data visualization and team collaboration features.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    title: "Music Recommendation via Mood",
+    description: "Deep learning service that detects mood from images and recommends music via Spotify API. Custom CNN models for emotion recognition tested on 100+ images.",
+    tags: ["Deep Learning", "Spotipy", "CNN", "Python"],
+    icon: Music,
+    gradient: "from-accent to-primary",
     featured: true,
+    github: "https://github.com/dhanyasri612",
+    live: "#",
   },
   {
-    title: "Mobile Banking App",
-    description: "Secure and intuitive mobile banking interface with biometric authentication.",
-    tags: ["React Native", "Firebase", "Plaid"],
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop",
+    title: "Weather Dashboard",
+    description: "Full-stack React/Django weather application with Open-Meteo API integration, Recharts visualization, and multi-location support with optimized async operations.",
+    tags: ["React", "Django", "Axios", "Recharts"],
+    icon: Cloud,
+    gradient: "from-primary/80 to-accent/80",
     featured: false,
+    github: "https://github.com/dhanyasri612",
+    live: "#",
   },
   {
-    title: "Creative Portfolio",
-    description: "Award-winning portfolio website for a design agency showcasing their best work.",
-    tags: ["Gatsby", "GSAP", "Contentful"],
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=600&fit=crop",
+    title: "Python Quiz Application",
+    description: "Interactive web-based quiz with Flask backend featuring dynamic questions, real-time scoring, and responsive result display.",
+    tags: ["Flask", "HTML/CSS", "Python", "Git"],
+    icon: Code,
+    gradient: "from-accent/80 to-primary/80",
     featured: false,
+    github: "https://github.com/dhanyasri612",
+    live: "#",
   },
 ];
 
 const Projects = () => {
   return (
-    <section id="work" className="py-32 relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <span className="text-primary font-medium text-sm uppercase tracking-widest mb-4 block">
-            Portfolio
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-            Selected <span className="text-gradient">Projects</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A curated collection of projects that showcase my expertise in 
-            building modern, scalable web applications.
+    <section id="work" className="py-32 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -translate-y-1/2" />
+      
+      <div className="container mx-auto px-6 relative">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+          <div>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-mono mb-6">
+              // Projects
+            </span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold">
+              Featured <span className="text-gradient">Work</span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground text-lg max-w-md">
+            A collection of AI/ML projects and full-stack applications showcasing 
+            my expertise in building intelligent solutions.
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* Projects Grid - Bento Style */}
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <article
               key={project.title}
-              className={`group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-500 hover-lift ${
+              className={`group relative rounded-3xl overflow-hidden border-gradient hover-lift transition-all duration-500 ${
                 project.featured ? "md:row-span-1" : ""
               }`}
             >
-              {/* Image */}
-              <div className="relative h-64 md:h-80 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-              </div>
-
+              {/* Gradient Background */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-5 group-hover:opacity-10 transition-opacity`} />
+              
               {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <div className="flex flex-wrap gap-2 mb-4">
+              <div className="relative p-8 md:p-10 h-full flex flex-col">
+                {/* Header */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className="p-4 rounded-2xl bg-gradient-primary text-primary-foreground">
+                    <project.icon className="w-7 h-7" />
+                  </div>
+                  
+                  {/* Action buttons */}
+                  <div className="flex gap-2 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    <a 
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                    <a 
+                      href={project.live}
+                      className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
+                    >
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Title & Description */}
+                <h3 className="font-display text-2xl md:text-3xl font-bold mb-4 text-foreground group-hover:text-gradient transition-all">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground mb-8 flex-grow leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary"
+                      className="px-3 py-1.5 text-xs font-mono rounded-full bg-secondary text-muted-foreground group-hover:text-primary transition-colors"
                     >
                       {tag}
                     </span>
                   ))}
-                </div>
-                
-                <h3 className="font-display text-2xl font-bold mb-2 text-foreground">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-6 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Actions */}
-                <div className="flex gap-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  <Button variant="hero" size="sm">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
-                  </Button>
-                  <Button variant="glass" size="sm">
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
-                  </Button>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        {/* View All Button */}
+        {/* View All */}
         <div className="text-center mt-12">
-          <Button variant="outline" size="lg">
-            View All Projects
+          <Button variant="glass" size="lg" asChild>
+            <a href="https://github.com/dhanyasri612" target="_blank" rel="noopener noreferrer">
+              <Github className="w-5 h-5 mr-2" />
+              View All on GitHub
+            </a>
           </Button>
         </div>
       </div>

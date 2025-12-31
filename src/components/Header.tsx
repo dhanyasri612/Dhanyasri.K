@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -23,38 +23,49 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border"
-          : "bg-transparent"
+          ? "glass py-3"
+          : "bg-transparent py-5"
       }`}
     >
-      <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="font-display text-2xl font-bold text-foreground">
-          JD<span className="text-primary">.</span>
+      <nav className="container mx-auto px-6 flex items-center justify-between">
+        <a href="#" className="font-display text-2xl font-bold text-foreground group">
+          <span className="text-gradient">D</span>
+          <span className="text-foreground group-hover:text-primary transition-colors">S</span>
+          <span className="text-primary">.</span>
         </a>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
             <li key={item.label}>
               <a
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium"
+                className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium group"
               >
                 {item.label}
+                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-primary group-hover:w-3/4 group-hover:left-[12.5%] transition-all duration-300" />
               </a>
             </li>
           ))}
         </ul>
 
-        <Button variant="hero" size="sm" className="hidden md:inline-flex">
-          Let's Talk
-        </Button>
+        <div className="hidden md:flex items-center gap-3">
+          <Button variant="glass" size="sm" asChild>
+            <a href="#contact">
+              <Download className="w-4 h-4 mr-2" />
+              Resume
+            </a>
+          </Button>
+          <Button variant="hero" size="sm" asChild>
+            <a href="#contact">Hire Me</a>
+          </Button>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-foreground p-2"
+          className="md:hidden text-foreground p-2 hover:text-primary transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -62,28 +73,35 @@ const Header = () => {
       </nav>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border">
-          <ul className="container mx-auto px-6 py-6 flex flex-col gap-4">
+      <div 
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="glass border-t border-border">
+          <ul className="container mx-auto px-6 py-6 flex flex-col gap-2">
             {navItems.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium text-lg"
+                  className="block py-3 text-muted-foreground hover:text-foreground hover:pl-2 transition-all duration-300 font-medium text-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
                 </a>
               </li>
             ))}
-            <li className="pt-4">
-              <Button variant="hero" className="w-full">
-                Let's Talk
+            <li className="pt-4 flex gap-3">
+              <Button variant="glass" className="flex-1" asChild>
+                <a href="#contact">Resume</a>
+              </Button>
+              <Button variant="hero" className="flex-1" asChild>
+                <a href="#contact">Hire Me</a>
               </Button>
             </li>
           </ul>
         </div>
-      )}
+      </div>
     </header>
   );
 };

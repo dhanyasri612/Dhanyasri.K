@@ -1,76 +1,172 @@
+import { useState } from "react";
+
 const skillCategories = [
   {
-    title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    id: "languages",
+    title: "Languages",
+    skills: [
+      { name: "Python", level: 90 },
+      { name: "JavaScript", level: 85 },
+      { name: "Java", level: 75 },
+      { name: "C", level: 70 },
+      { name: "SQL", level: 80 },
+    ],
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "Python", "PostgreSQL", "MongoDB", "GraphQL"],
+    id: "frameworks",
+    title: "Frameworks",
+    skills: [
+      { name: "React.js", level: 85 },
+      { name: "Django", level: 80 },
+      { name: "Flask", level: 75 },
+      { name: "TensorFlow/Keras", level: 85 },
+      { name: "Bootstrap 5", level: 80 },
+    ],
   },
   {
+    id: "ml",
+    title: "AI/ML",
+    skills: [
+      { name: "Deep Learning", level: 85 },
+      { name: "CNN", level: 90 },
+      { name: "Scikit-Learn", level: 80 },
+      { name: "Pandas/NumPy", level: 85 },
+      { name: "Matplotlib", level: 75 },
+    ],
+  },
+  {
+    id: "tools",
     title: "Tools",
-    skills: ["Git", "Docker", "Figma", "AWS", "Vercel"],
-  },
-  {
-    title: "Soft Skills",
-    skills: ["Problem Solving", "Communication", "Team Leadership", "Agile", "Mentoring"],
+    skills: [
+      { name: "Git/GitHub", level: 85 },
+      { name: "VS Code", level: 90 },
+      { name: "Figma", level: 70 },
+      { name: "REST APIs", level: 80 },
+      { name: "Docker", level: 65 },
+    ],
   },
 ];
 
+const certifications = [
+  { name: "Data Analytics with Python", org: "NPTEL" },
+  { name: "Introduction to LLM", org: "NPTEL" },
+  { name: "AI Primer", org: "Infosys" },
+  { name: "Principles of Generative AI", org: "Infosys" },
+  { name: "C & Java", org: "IIT Bombay" },
+];
+
 const Skills = () => {
+  const [activeTab, setActiveTab] = useState("languages");
+
   return (
-    <section id="skills" className="py-32 relative bg-secondary/30">
-      <div className="container mx-auto px-6">
+    <section id="skills" className="py-32 relative overflow-hidden bg-secondary/20">
+      {/* Background decoration */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[150px]" />
+      
+      <div className="container mx-auto px-6 relative">
         <div className="text-center mb-16">
-          <span className="text-primary font-medium text-sm uppercase tracking-widest mb-4 block">
-            Expertise
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-mono mb-6">
+            // Skills & Expertise
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-            Skills & <span className="text-gradient">Technologies</span>
+            Technical <span className="text-gradient">Arsenal</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A comprehensive toolkit that enables me to build exceptional 
-            digital products from concept to deployment.
+            A comprehensive toolkit spanning AI/ML, web development, and software engineering.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <div
-              key={category.title}
-              className="p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300"
+        {/* Tab Navigation */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {skillCategories.map((category) => (
+            <button
+              key={category.id}
+              onClick={() => setActiveTab(category.id)}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeTab === category.id
+                  ? "bg-gradient-primary text-primary-foreground shadow-glow"
+                  : "bg-secondary text-muted-foreground hover:text-foreground"
+              }`}
             >
-              <h3 className="font-display text-xl font-semibold mb-6 text-foreground">
-                {category.title}
-              </h3>
-              <ul className="space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <li
-                    key={skill}
-                    className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group"
-                  >
-                    <span className="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform" />
-                    {skill}
-                  </li>
-                ))}
-              </ul>
+              {category.title}
+            </button>
+          ))}
+        </div>
+
+        {/* Skills Display */}
+        <div className="max-w-3xl mx-auto">
+          {skillCategories.map((category) => (
+            <div
+              key={category.id}
+              className={`space-y-6 transition-all duration-300 ${
+                activeTab === category.id ? "block" : "hidden"
+              }`}
+            >
+              {category.skills.map((skill, index) => (
+                <div key={skill.name} className="group">
+                  <div className="flex justify-between mb-2">
+                    <span className="font-medium text-foreground group-hover:text-primary transition-colors">
+                      {skill.name}
+                    </span>
+                    <span className="text-sm font-mono text-muted-foreground">
+                      {skill.level}%
+                    </span>
+                  </div>
+                  <div className="h-2 rounded-full bg-secondary overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-primary transition-all duration-1000 ease-out"
+                      style={{
+                        width: activeTab === category.id ? `${skill.level}%` : "0%",
+                        transitionDelay: `${index * 100}ms`,
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
         </div>
 
-        {/* Tech Stack Icons */}
-        <div className="mt-20 pt-16 border-t border-border">
-          <p className="text-center text-muted-foreground mb-8">
-            Technologies I work with
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 hover:opacity-100 transition-opacity">
-            {["React", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Docker"].map((tech) => (
+        {/* Certifications */}
+        <div className="mt-24 pt-16 border-t border-border">
+          <h3 className="text-center font-display text-2xl font-bold mb-10 text-foreground">
+            Certifications & Courses
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {certifications.map((cert) => (
               <div
-                key={tech}
-                className="font-display text-lg md:text-xl font-semibold text-muted-foreground hover:text-primary transition-colors cursor-default"
+                key={cert.name}
+                className="px-5 py-3 rounded-xl border-gradient hover-lift transition-all group"
               >
-                {tech}
+                <span className="text-foreground font-medium group-hover:text-gradient transition-all">
+                  {cert.name}
+                </span>
+                <span className="text-muted-foreground text-sm ml-2">
+                  — {cert.org}
+                </span>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Coding Profiles */}
+        <div className="mt-16 text-center">
+          <p className="text-muted-foreground mb-6">Competitive Programming Profiles</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              { name: "LeetCode", url: "https://leetcode.com/u/dhanyasrikalisamy" },
+              { name: "HackerRank", url: "https://hackerrank.com/profile/dhanyasrikalisa1" },
+              { name: "GitHub", url: "https://github.com/dhanyasri612" },
+            ].map((profile) => (
+              <a
+                key={profile.name}
+                href={profile.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-lg font-display font-semibold text-muted-foreground hover:text-primary transition-colors"
+              >
+                {profile.name}
+              </a>
             ))}
           </div>
         </div>

@@ -32,7 +32,7 @@ const Header = () => {
       <nav className="container mx-auto px-6 flex items-center justify-between">
         <a href="#" className="font-display text-2xl font-bold text-foreground group">
           <span className="text-gradient">D</span>
-          <span className="text-foreground group-hover:text-primary transition-colors">S</span>
+          <span className="text-foreground group-hover:text-primary transition-colors">K</span>
           <span className="text-primary">.</span>
         </a>
 

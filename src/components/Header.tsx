@@ -53,7 +53,7 @@ const Header = () => {
 
         <div className="hidden md:flex items-center gap-3">
           <Button variant="glass" size="sm" asChild>
-            <a href="#contact">
+            <a href="/Dhanyasri_Resume.pdf" target="_blank" rel="noopener noreferrer">
               <Download className="w-4 h-4 mr-2" />
               Resume
             </a>
@@ -93,7 +93,7 @@ const Header = () => {
             ))}
             <li className="pt-4 flex gap-3">
               <Button variant="glass" className="flex-1" asChild>
-                <a href="#contact">Resume</a>
+                <a href="/Dhanyasri_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
               </Button>
               <Button variant="hero" className="flex-1" asChild>
                 <a href="#contact">Hire Me</a>

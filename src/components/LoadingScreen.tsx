@@ -75,7 +75,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             
             {/* Center logo */}
             <div className="relative">
-              <span className="font-display text-4xl font-bold text-gradient">D</span>
+              <span className="font-display text-3xl font-bold text-gradient">DK</span>
               <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse" />
             </div>
           </div>

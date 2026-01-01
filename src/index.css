@@ -290,6 +290,45 @@
   animation: pulse-ring 2s ease-out infinite;
 }
 
+.animate-spin-slow {
+  animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-dot {
+  0% {
+    transform: rotate(0deg) translateY(-150%) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateY(-150%) rotate(-360deg);
+  }
+}
+
+.animate-orbit-dot {
+  animation: orbit-dot 5s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

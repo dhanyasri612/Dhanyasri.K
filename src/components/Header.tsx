@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -52,6 +53,7 @@ const Header = () => {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <Button variant="glass" size="sm" asChild>
             <a href="/Dhanyasri_Resume.pdf" target="_blank" rel="noopener noreferrer">
               <Download className="w-4 h-4 mr-2" />
@@ -91,7 +93,8 @@ const Header = () => {
                 </a>
               </li>
             ))}
-            <li className="pt-4 flex gap-3">
+            <li className="pt-4 flex items-center gap-3">
+              <ThemeToggle />
               <Button variant="glass" className="flex-1" asChild>
                 <a href="/Dhanyasri_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
               </Button>

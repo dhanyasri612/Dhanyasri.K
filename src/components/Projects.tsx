@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Brain, Music, Cloud, Code } from "lucide-react";
+import { ExternalLink, Github, Brain, Music, Cloud, Code, Palette, Layers, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "./AnimatedSection";
@@ -13,6 +13,7 @@ const projects = [
     featured: true,
     github: "https://github.com/dhanyasri612",
     live: "#",
+    type: "dev",
   },
   {
     title: "Music Recommendation via Mood",
@@ -23,6 +24,7 @@ const projects = [
     featured: true,
     github: "https://github.com/dhanyasri612",
     live: "#",
+    type: "dev",
   },
   {
     title: "Weather Dashboard",
@@ -33,6 +35,7 @@ const projects = [
     featured: false,
     github: "https://github.com/dhanyasri612",
     live: "#",
+    type: "dev",
   },
   {
     title: "Python Quiz Application",
@@ -43,6 +46,37 @@ const projects = [
     featured: false,
     github: "https://github.com/dhanyasri612",
     live: "#",
+    type: "dev",
+  },
+  {
+    title: "Empower Youth Campaign",
+    description: "Creative poster design for youth empowerment initiative featuring bold typography, vibrant gradients, and symbolic lightbulb imagery representing innovation and future potential.",
+    tags: ["Figma", "Visual Design", "Typography", "Branding"],
+    icon: Palette,
+    gradient: "from-orange-500 to-yellow-400",
+    featured: true,
+    figma: "https://www.figma.com/design/OnNBxN9cSo72qZuSDdOEen/Untitled?node-id=0-1",
+    type: "design",
+  },
+  {
+    title: "Mobile App UI/UX",
+    description: "Comprehensive mobile application interface design with intuitive user flows, modern component library, and accessibility-focused interactions.",
+    tags: ["Figma", "UI/UX", "Mobile Design", "Prototyping"],
+    icon: Smartphone,
+    gradient: "from-violet-500 to-purple-400",
+    featured: false,
+    figma: "https://www.figma.com/design/8xSEoDaDE8lWOaV9sGpgbD/Untitled?node-id=6-71",
+    type: "design",
+  },
+  {
+    title: "UI/UX Design System",
+    description: "Complete design system with reusable components, consistent spacing, color palette, and typography guidelines for scalable product development.",
+    tags: ["Figma", "Design System", "Components", "Style Guide"],
+    icon: Layers,
+    gradient: "from-cyan-500 to-blue-400",
+    featured: false,
+    figma: "https://www.figma.com/design/Tx7t7zTyuLzx1rPkblrlm8/uiux?node-id=0-1",
+    type: "design",
   },
 ];
 
@@ -106,20 +140,36 @@ const Projects = () => {
                   
                   {/* Action buttons */}
                   <div className="flex gap-2 opacity-100 md:opacity-0 md:-translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300">
-                    <a 
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <Github className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </a>
-                    <a 
-                      href={project.live}
-                      className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </a>
+                    {project.type === "dev" && project.github && (
+                      <a 
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </a>
+                    )}
+                    {project.type === "dev" && project.live && (
+                      <a 
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </a>
+                    )}
+                    {project.type === "design" && project.figma && (
+                      <a 
+                        href={project.figma}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </a>
+                    )}
                   </div>
                 </div>
 

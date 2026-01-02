@@ -1,5 +1,7 @@
 import { ExternalLink, Github, Brain, Music, Cloud, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { fadeInUp, staggerContainer } from "./AnimatedSection";
 
 const projects = [
   {
@@ -46,32 +48,48 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="work" className="py-32 relative overflow-hidden">
+    <section id="work" className="py-16 md:py-32 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -translate-y-1/2" />
+      <div className="absolute top-1/2 left-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-primary/5 rounded-full blur-[100px] md:blur-[150px] -translate-y-1/2" />
       
-      <div className="container mx-auto px-6 relative">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-mono mb-6">
+      <div className="container mx-auto px-4 sm:px-6 relative">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-10 md:mb-16"
+        >
+          <motion.div variants={fadeInUp}>
+            <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-mono mb-4 md:mb-6">
               // Projects
             </span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
               Featured <span className="text-gradient">Work</span>
             </h2>
-          </div>
-          <p className="text-muted-foreground text-lg max-w-md">
+          </motion.div>
+          <motion.p 
+            variants={fadeInUp}
+            className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-md"
+          >
             A collection of AI/ML projects and full-stack applications showcasing 
             my expertise in building intelligent solutions.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Projects Grid - Bento Style */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="grid sm:grid-cols-2 gap-4 md:gap-6"
+        >
           {projects.map((project, index) => (
-            <article
+            <motion.article
               key={project.title}
-              className={`group relative rounded-3xl overflow-hidden border-gradient hover-lift transition-all duration-500 ${
+              variants={fadeInUp}
+              className={`group relative rounded-2xl md:rounded-3xl overflow-hidden border-gradient hover-lift transition-all duration-500 ${
                 project.featured ? "md:row-span-1" : ""
               }`}
             >
@@ -79,65 +97,71 @@ const Projects = () => {
               <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-5 group-hover:opacity-10 transition-opacity`} />
               
               {/* Content */}
-              <div className="relative p-8 md:p-10 h-full flex flex-col">
+              <div className="relative p-5 sm:p-6 md:p-8 lg:p-10 h-full flex flex-col">
                 {/* Header */}
-                <div className="flex items-start justify-between mb-6">
-                  <div className="p-4 rounded-2xl bg-gradient-primary text-primary-foreground">
-                    <project.icon className="w-7 h-7" />
+                <div className="flex items-start justify-between mb-4 md:mb-6">
+                  <div className="p-3 sm:p-4 rounded-xl md:rounded-2xl bg-gradient-primary text-primary-foreground">
+                    <project.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
                   </div>
                   
                   {/* Action buttons */}
-                  <div className="flex gap-2 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="flex gap-2 opacity-100 md:opacity-0 md:-translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300">
                     <a 
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
-                      <Github className="w-5 h-5" />
+                      <Github className="w-4 h-4 sm:w-5 sm:h-5" />
                     </a>
                     <a 
                       href={project.live}
                       className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
                     >
-                      <ExternalLink className="w-5 h-5" />
+                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
                     </a>
                   </div>
                 </div>
 
                 {/* Title & Description */}
-                <h3 className="font-display text-2xl md:text-3xl font-bold mb-4 text-foreground group-hover:text-gradient transition-all">
+                <h3 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 md:mb-4 text-foreground group-hover:text-gradient transition-all">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground mb-8 flex-grow leading-relaxed">
+                <p className="text-muted-foreground text-sm sm:text-base mb-6 md:mb-8 flex-grow leading-relaxed line-clamp-4 md:line-clamp-none">
                   {project.description}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1.5 text-xs font-mono rounded-full bg-secondary text-muted-foreground group-hover:text-primary transition-colors"
+                      className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-mono rounded-full bg-secondary text-muted-foreground group-hover:text-primary transition-colors"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         {/* View All */}
-        <div className="text-center mt-12">
-          <Button variant="glass" size="lg" asChild>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-8 md:mt-12"
+        >
+          <Button variant="glass" size="lg" className="w-full sm:w-auto" asChild>
             <a href="https://github.com/dhanyasri612" target="_blank" rel="noopener noreferrer">
-              <Github className="w-5 h-5 mr-2" />
+              <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               View All on GitHub
             </a>
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

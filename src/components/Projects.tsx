@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Brain, Music, Cloud, Code, Palette, Layers, Smartphone } from "lucide-react";
+import { ExternalLink, Github, Brain, Cloud, Code, Palette, Layers, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "./AnimatedSection";
@@ -11,20 +11,22 @@ const projects = [
     icon: Brain,
     gradient: "from-primary to-accent",
     featured: true,
-    github: "https://github.com/dhanyasri612",
-    live: "#",
+    github: "https://github.com/dhanyasri612/Brain-Tumor",
+    live: "",
     type: "dev",
+    thumbnail: "/projects/brain_tumor.png",
   },
   {
-    title: "Music Recommendation via Mood",
-    description: "Deep learning service that detects mood from images and recommends music via Spotify API. Custom CNN models for emotion recognition tested on 100+ images.",
-    tags: ["Deep Learning", "Spotipy", "CNN", "Python"],
-    icon: Music,
-    gradient: "from-accent to-primary",
+    title: "Code Reviewer App",
+    description: "AI-assisted code review application that analyzes code quality, highlights issues, and helps improve readability and maintainability through intelligent feedback.",
+    tags: ["Python", "AI", "Code Analysis", "NLP"],
+    icon: Code,
+    gradient: "from-emerald-500 to-teal-500",
     featured: true,
-    github: "https://github.com/dhanyasri612",
-    live: "#",
+    github: "https://github.com/dhanyasri612/Code-Reviewer",
+    live: "https://code-reviewer-iota-green.vercel.app/",
     type: "dev",
+    thumbnail: "/projects/code-reviewer.png",
   },
   {
     title: "Weather Dashboard",
@@ -33,20 +35,22 @@ const projects = [
     icon: Cloud,
     gradient: "from-primary/80 to-accent/80",
     featured: false,
-    github: "https://github.com/dhanyasri612",
-    live: "#",
+    github: "https://github.com/dhanyasri612/weather-frontend",
+    live: "https://weather-frontend-sigma-ten.vercel.app/",
     type: "dev",
+    thumbnail: "/projects/weather_checker.png",
   },
   {
-    title: "Python Quiz Application",
-    description: "Interactive web-based quiz with Flask backend featuring dynamic questions, real-time scoring, and responsive result display.",
-    tags: ["Flask", "HTML/CSS", "Python", "Git"],
+    title: "BlogSpace App",
+    description: "Full-stack blogging platform with responsive UI, post management workflows, and a smooth reading and publishing experience.",
+    tags: ["React", "Node.js", "Express.js", "MongoDB"],
     icon: Code,
-    gradient: "from-accent/80 to-primary/80",
+    gradient: "from-indigo-500 to-cyan-500",
     featured: false,
-    github: "https://github.com/dhanyasri612",
-    live: "#",
+    github: "https://github.com/dhanyasri612/BlogSpace-App",
+    live: "https://blog-space-app-xi.vercel.app/",
     type: "dev",
+    thumbnail: "/projects/blogspace.png",
   },
   {
     title: "Empower Youth Campaign",
@@ -57,6 +61,7 @@ const projects = [
     featured: true,
     figma: "https://www.figma.com/design/OnNBxN9cSo72qZuSDdOEen/Untitled?node-id=0-1",
     type: "design",
+    thumbnail: "/projects/empower_youth.png",
   },
   {
     title: "Mobile App UI/UX",
@@ -65,22 +70,158 @@ const projects = [
     icon: Smartphone,
     gradient: "from-violet-500 to-purple-400",
     featured: false,
-    figma: "https://www.figma.com/design/8xSEoDaDE8lWOaV9sGpgbD/Untitled?node-id=6-71",
+    figma: "https://www.figma.com/proto/Tx7t7zTyuLzx1rPkblrlm8/uiux?node-id=0-1&t=lINNP66KiXbQI9Xt-1",
     type: "design",
+    thumbnail: "/projects/mobile_uiux.png",
   },
   {
-    title: "UI/UX Design System",
-    description: "Complete design system with reusable components, consistent spacing, color palette, and typography guidelines for scalable product development.",
-    tags: ["Figma", "Design System", "Components", "Style Guide"],
-    icon: Layers,
+    title: "Logo Design",
+    description: "Creative logo design project featuring modern brand identity with sophisticated visual elements and meaningful symbolism for scalable brand recognition.",
+    tags: ["Figma", "Logo Design", "Branding", "Visual Identity"],
+    icon: Palette,
     gradient: "from-cyan-500 to-blue-400",
     featured: false,
-    figma: "https://www.figma.com/design/Tx7t7zTyuLzx1rPkblrlm8/uiux?node-id=0-1",
+    figma: "https://www.figma.com/design/8xSEoDaDE8lWOaV9sGpgbD/Untitled?node-id=6-71",
     type: "design",
+    thumbnail: "/projects/design_system.png",
   },
+    {
+      title: "Code Reviewer Website",
+      description: "Comprehensive web platform design for code review tool with clean interface, collaborative features, and developer-focused workflows for efficient code quality management.",
+      tags: ["Figma", "Web Design", "UI/UX", "Platform Design"],
+      icon: Code,
+      gradient: "from-green-500 to-emerald-400",
+      featured: false,
+      figma: "https://www.figma.com/proto/iUBD54jjaeuPxEYkE6njQZ/Untitled?node-id=1-2&starting-point-node-id=1%3A2",
+      type: "design",
+      thumbnail: "/projects/code-reviewer.png",
+    },
 ];
 
 const Projects = () => {
+  const projectsByCategory = {
+    aiml: projects.filter(p => p.type === "dev" && p.tags.some(t => ["TensorFlow", "CNN", "Python"].includes(t))),
+    fullstack: projects.filter(p => p.type === "dev" && p.tags.some(t => ["React", "Django"].includes(t))),
+    uiux: projects.filter(p => p.type === "design"),
+  };
+
+  const renderProjectCategory = (title, IconComponent, categoryProjects) => (
+    <div key={title} className="mb-16 md:mb-24">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="flex items-center gap-3 mb-8 md:mb-12"
+      >
+        <div className="p-2.5 rounded-lg bg-primary/20 text-primary">
+          <IconComponent className="w-6 h-6" />
+        </div>
+        <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">{title}</h3>
+      </motion.div>
+      
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+        className="grid sm:grid-cols-2 gap-4 md:gap-6"
+      >
+        {categoryProjects.map((project) => (
+          <motion.article
+            key={project.title}
+            variants={fadeInUp}
+            className="group relative rounded-2xl md:rounded-3xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-500 hover-lift"
+          >
+            {/* Thumbnail Image */}
+            {project.thumbnail && (
+              <div className="relative h-48 md:h-56 overflow-hidden bg-secondary">
+                <img 
+                  src={project.thumbnail} 
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            )}
+            
+            {/* Gradient Background */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
+            
+            {/* Glow effect on hover */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+              <div className={`absolute -inset-[200%] bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-10 blur-3xl`} />
+            </div>
+            
+            {/* Content */}
+            <div className="relative p-5 sm:p-6 md:p-8 lg:p-10 h-full flex flex-col">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4 md:mb-6">
+                <div className="p-3 sm:p-4 rounded-xl md:rounded-2xl bg-gradient-primary text-primary-foreground group-hover:shadow-lg transition-all duration-300">
+                  <project.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
+                </div>
+                
+                {/* Action buttons */}
+                <div className="flex gap-2 opacity-100 md:opacity-0 md:-translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300">
+                  {project.type === "dev" && project.github && (
+                    <a 
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    >
+                      <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </a>
+                  )}
+                  {project.type === "dev" && project.live && (
+                    <a 
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    >
+                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </a>
+                  )}
+                  {project.type === "design" && project.figma && (
+                    <a 
+                      href={project.figma}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    >
+                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Title & Description */}
+              <h4 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 md:mb-4 text-foreground group-hover:text-primary transition-all duration-300">
+                {project.title}
+              </h4>
+              <p className="text-muted-foreground text-sm sm:text-base mb-6 md:mb-8 flex-grow leading-relaxed line-clamp-4 md:line-clamp-none group-hover:text-foreground/80 transition-colors duration-300">
+                {project.description}
+              </p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-mono rounded-full bg-secondary text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary transition-all duration-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.article>
+        ))}
+      </motion.div>
+    </div>
+  );
+
   return (
     <section id="work" className="py-16 md:py-32 relative overflow-hidden">
       {/* Background decoration */}
@@ -106,96 +247,14 @@ const Projects = () => {
             variants={fadeInUp}
             className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-md"
           >
-            A collection of AI/ML projects and full-stack applications showcasing 
-            my expertise in building intelligent solutions.
+            A collection of AI/ML projects, full-stack applications, and UI/UX designs showcasing my expertise.
           </motion.p>
         </motion.div>
 
-        {/* Projects Grid - Bento Style */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="grid sm:grid-cols-2 gap-4 md:gap-6"
-        >
-          {projects.map((project, index) => (
-            <motion.article
-              key={project.title}
-              variants={fadeInUp}
-              className={`group relative rounded-2xl md:rounded-3xl overflow-hidden border-gradient hover-lift transition-all duration-500 ${
-                project.featured ? "md:row-span-1" : ""
-              }`}
-            >
-              {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-5 group-hover:opacity-10 transition-opacity`} />
-              
-              {/* Content */}
-              <div className="relative p-5 sm:p-6 md:p-8 lg:p-10 h-full flex flex-col">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4 md:mb-6">
-                  <div className="p-3 sm:p-4 rounded-xl md:rounded-2xl bg-gradient-primary text-primary-foreground">
-                    <project.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
-                  </div>
-                  
-                  {/* Action buttons */}
-                  <div className="flex gap-2 opacity-100 md:opacity-0 md:-translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300">
-                    {project.type === "dev" && project.github && (
-                      <a 
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                      >
-                        <Github className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </a>
-                    )}
-                    {project.type === "dev" && project.live && (
-                      <a 
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </a>
-                    )}
-                    {project.type === "design" && project.figma && (
-                      <a 
-                        href={project.figma}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                {/* Title & Description */}
-                <h3 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 md:mb-4 text-foreground group-hover:text-gradient transition-all">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm sm:text-base mb-6 md:mb-8 flex-grow leading-relaxed line-clamp-4 md:line-clamp-none">
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-mono rounded-full bg-secondary text-muted-foreground group-hover:text-primary transition-colors"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+        {/* Category Sections */}
+        {renderProjectCategory("AI/ML Projects", Brain, projectsByCategory.aiml)}
+        {renderProjectCategory("Full-Stack Development", Cloud, projectsByCategory.fullstack)}
+        {renderProjectCategory("UI/UX Design", Palette, projectsByCategory.uiux)}
 
         {/* View All */}
         <motion.div 

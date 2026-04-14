@@ -6,17 +6,17 @@ const highlights = [
   {
     icon: Brain,
     title: "AI & Machine Learning",
-    description: "Building CNN models for medical imaging and emotion recognition systems.",
+    description: "Building CNN pipelines for medical imaging and emotion-aware experiences.",
   },
   {
     icon: Code2,
     title: "Full-Stack Development",
-    description: "Creating scalable web apps with React, Django, and Flask.",
+    description: "Shipping reliable React, Node.js/Express.js, Django, and Flask apps end-to-end.",
   },
   {
     icon: Sparkles,
     title: "Creative Problem Solver",
-    description: "Turning complex challenges into elegant, impactful solutions.",
+    description: "Translating fuzzy ideas into usable, measurable outcomes.",
   },
 ];
 
@@ -29,64 +29,60 @@ const About = () => {
       <div className="container mx-auto px-4 sm:px-6 relative">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column - Main Content */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
             className="lg:col-span-7"
           >
-            <motion.span 
+            <motion.span
               variants={fadeInUp}
               className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-mono mb-4 md:mb-6"
             >
               // About Me
             </motion.span>
             
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
               className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 leading-tight"
             >
-              Passionate about creating{" "}
-              <span className="text-gradient">intelligent</span> digital solutions
+              Designing quietly confident <span className="text-gradient">intelligent</span> digital experiences
             </motion.h2>
             
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               className="space-y-4 md:space-y-6 text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed"
             >
               <p>
-                I'm a <span className="text-foreground font-medium">Computer Science student</span> specializing 
-                in AI & ML at KPR Institute of Engineering and Technology, Coimbatore. 
-                With a strong foundation in both frontend and backend development, 
-                I bridge the gap between intelligent algorithms and beautiful user interfaces.
+                I'm a <span className="text-foreground font-medium">Computer Science student</span> focused on AI & ML at
+                KPR Institute of Engineering and Technology, Coimbatore. I like pairing clear product thinking with
+                hands-on building so intelligent systems feel simple to use.
               </p>
               <p>
-                My journey includes hands-on experience at{" "}
-                <span className="text-foreground font-medium">Nitroware Technologies</span> as a 
-                Machine Learning Intern, where I developed medical imaging solutions 
-                that achieved high accuracy in tumor detection.
+                Recently at <span className="text-foreground font-medium">Nitroware Technologies</span>, I prototyped
+                medical imaging models that improved tumor detection accuracy and delivered them with lightweight
+                dashboards so clinicians could trust the outputs.
               </p>
             </motion.div>
 
             {/* Education Card */}
             <motion.div 
               variants={fadeInUp}
-              className="mt-8 md:mt-10 p-4 sm:p-6 rounded-2xl border-gradient hover-glow"
+              className="mt-8 md:mt-10 p-4 sm:p-6 rounded-2xl border border-border hover:border-primary/50 bg-gradient-subtle hover:bg-primary/5 transition-all duration-300 group"
             >
               <div className="flex items-start gap-3 sm:gap-4">
-                <div className="p-2.5 sm:p-3 rounded-xl bg-primary/10 text-primary flex-shrink-0">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-primary/20 text-primary flex-shrink-0 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-300">
                   <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-display text-base sm:text-lg font-semibold text-foreground mb-1">
+                  <h3 className="font-display text-base sm:text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                     B.E. Computer Science (AI & ML)
                   </h3>
                   <p className="text-muted-foreground text-sm sm:text-base mb-2 truncate">
                     KPR Institute of Engineering and Technology
                   </p>
                   <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
-                    <span className="text-primary font-mono font-semibold">CGPA: 8.92</span>
                     <span className="text-muted-foreground">2023 - 2027</span>
                   </div>
                 </div>
@@ -126,32 +122,6 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* Stats */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 mt-16 md:mt-24 pt-8 md:pt-16 border-t border-border"
-        >
-          {[
-            { value: "8.92", label: "CGPA" },
-            { value: "94%", label: "HSC Score" },
-            { value: "4+", label: "Projects Completed" },
-            { value: "5+", label: "Certifications" },
-          ].map((stat, index) => (
-            <motion.div 
-              key={stat.label} 
-              variants={fadeInUp}
-              className="text-center group"
-            >
-              <div className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-1 sm:mb-2 group-hover:scale-110 transition-transform">
-                {stat.value}
-              </div>
-              <div className="text-muted-foreground text-xs sm:text-sm font-mono">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

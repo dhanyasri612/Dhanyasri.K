@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Figma } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -133,6 +133,16 @@ const Contact = () => {
                     className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-secondary text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
                   >
                     <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </motion.a>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    href="https://www.figma.com/design/fECgy3WOUzc8MnWM0aH6cN/Untitled?t=WDxTV7tfcdZaQOQd-1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-secondary text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                  >
+                    <Figma className="w-5 h-5 sm:w-6 sm:h-6" />
                   </motion.a>
                 </div>
               </motion.div>

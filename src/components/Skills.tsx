@@ -11,18 +11,33 @@ const skillCategories = [
       { name: "JavaScript", level: 85 },
       { name: "Java", level: 75 },
       { name: "C", level: 70 },
-      { name: "SQL", level: 80 },
+    ],
+  },
+  {
+    id: "libraries",
+    title: "Libraries",
+    skills: [
+      { name: "React.js", level: 85 },
+      { name: "TensorFlow/Keras", level: 85 },
+      { name: "Bootstrap 5", level: 80 },
     ],
   },
   {
     id: "frameworks",
     title: "Frameworks",
     skills: [
-      { name: "React.js", level: 85 },
+      { name: "Node.js", level: 80 },
+      { name: "Express.js", level: 80 },
       { name: "Django", level: 80 },
       { name: "Flask", level: 75 },
-      { name: "TensorFlow/Keras", level: 85 },
-      { name: "Bootstrap 5", level: 80 },
+    ],
+  },
+  {
+    id: "databases",
+    title: "Databases",
+    skills: [
+      { name: "SQL", level: 80 },
+      { name: "MongoDB", level: 78 },
     ],
   },
   {
@@ -44,7 +59,6 @@ const skillCategories = [
       { name: "VS Code", level: 90 },
       { name: "Figma", level: 70 },
       { name: "REST APIs", level: 80 },
-      { name: "Docker", level: 65 },
     ],
   },
 ];
@@ -177,19 +191,22 @@ const Skills = () => {
           </motion.h3>
           <motion.div 
             variants={fadeInUp}
-            className="flex flex-wrap justify-center gap-2 sm:gap-4"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3"
           >
             {certifications.map((cert) => (
               <motion.div
                 key={cert.name}
-                whileHover={{ scale: 1.05 }}
-                className="px-3 sm:px-5 py-2 sm:py-3 rounded-xl border-gradient hover-lift transition-all group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg border border-primary/30 bg-gradient-subtle hover:bg-primary/15 hover:border-primary/60 transition-all group"
               >
-                <span className="text-foreground font-medium text-sm sm:text-base group-hover:text-gradient transition-all">
-                  {cert.name}
-                </span>
-                <span className="text-muted-foreground text-xs sm:text-sm ml-1 sm:ml-2">
-                  — {cert.org}
+                <div className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <span className="text-foreground font-medium text-xs sm:text-sm group-hover:text-primary transition-colors">
+                    {cert.name}
+                  </span>
+                </div>
+                <span className="text-muted-foreground text-[10px] sm:text-xs block mt-0.5 pl-2.5">
+                  {cert.org}
                 </span>
               </motion.div>
             ))}

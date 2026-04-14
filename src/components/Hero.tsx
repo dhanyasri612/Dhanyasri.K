@@ -88,11 +88,10 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed px-4 lg:px-0"
             >
-              Crafting intelligent solutions with{" "}
-              <span className="text-primary font-medium">Machine Learning</span>,{" "}
-              <span className="text-accent font-medium">React</span>, and{" "}
-              <span className="text-primary font-medium">Django</span>. 
-              Transforming ideas into impactful digital experiences.
+              Building intelligent systems and seamless digital experiences. Specialized in{" "}
+              <span className="text-primary font-semibold">Machine Learning & Deep Learning</span> with{" "}
+              <span className="text-accent font-semibold">Full-Stack Development & UI/UX</span> expertise,
+              driven to solve real-world problems through innovative and scalable solutions.
             </motion.p>
 
             {/* Tech Stack Preview */}
@@ -102,7 +101,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="flex flex-wrap gap-2 mb-8 md:mb-10 justify-center lg:justify-start"
             >
-              {["Python", "React.js", "TensorFlow", "Django", "CNN", "OpenCV"].map((tech, index) => (
+              {["Python", "React.js", "Node.js", "TensorFlow", "Django", "CNN", "OpenCV", "Figma"].map((tech, index) => (
                 <motion.span 
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -122,8 +121,13 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4"
             >
-              <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
-                <a href="#work">View My Projects</a>
+              <Button variant="hero" size="lg" className="w-full sm:w-auto group relative overflow-hidden" asChild>
+                <a href="#work">
+                  <span className="relative z-10 flex items-center gap-2">
+                    View My Projects
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </a>
               </Button>
               <Button variant="glass" size="lg" className="w-full sm:w-auto" asChild>
                 <a href="#contact">Let's Connect</a>

@@ -40,17 +40,17 @@
     --font-display: 'Outfit', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     --font-body: 'Outfit', sans-serif;
-    
+
     --gradient-primary: linear-gradient(135deg, hsl(175 80% 40%) 0%, hsl(200 90% 45%) 50%, hsl(280 70% 55%) 100%);
     --gradient-subtle: linear-gradient(135deg, hsl(175 80% 40% / 0.1) 0%, hsl(280 70% 55% / 0.08) 100%);
     --gradient-dark: linear-gradient(180deg, hsl(210 40% 98%) 0%, hsl(220 20% 95%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 20% 97%) 100%);
     --gradient-glow: radial-gradient(ellipse at center, hsl(175 80% 40% / 0.15) 0%, transparent 70%);
-    
+
     --shadow-glow: 0 0 80px hsl(175 80% 40% / 0.2);
     --shadow-card: 0 25px 60px -15px hsl(220 25% 10% / 0.1);
     --shadow-accent: 0 0 40px hsl(280 70% 55% / 0.15);
-    
+
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
@@ -83,13 +83,13 @@
     --border: 220 20% 18%;
     --input: 220 20% 18%;
     --ring: 175 80% 50%;
-    
+
     --gradient-primary: linear-gradient(135deg, hsl(175 80% 50%) 0%, hsl(200 90% 55%) 50%, hsl(280 70% 60%) 100%);
     --gradient-subtle: linear-gradient(135deg, hsl(175 80% 50% / 0.15) 0%, hsl(280 70% 60% / 0.1) 100%);
     --gradient-dark: linear-gradient(180deg, hsl(220 25% 5%) 0%, hsl(220 30% 8%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(220 25% 10%) 0%, hsl(220 25% 6%) 100%);
     --gradient-glow: radial-gradient(ellipse at center, hsl(175 80% 50% / 0.2) 0%, transparent 70%);
-    
+
     --shadow-glow: 0 0 80px hsl(175 80% 50% / 0.25);
     --shadow-card: 0 25px 60px -15px hsl(0 0% 0% / 0.6);
     --shadow-accent: 0 0 40px hsl(280 70% 60% / 0.2);
@@ -110,11 +110,17 @@
     font-family: var(--font-body);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
   }
 
-  code, pre {
+  code,
+  pre {
     font-family: var(--font-mono);
   }
 }
@@ -166,8 +172,8 @@
     padding: 1px;
     border-radius: inherit;
     background: var(--gradient-primary);
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -258,6 +264,7 @@
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -269,6 +276,7 @@
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -276,18 +284,24 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-15px) rotate(2deg);
   }
 }
 
 @keyframes blink {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
@@ -297,6 +311,7 @@
   from {
     transform: rotate(0deg) translateX(120px) rotate(0deg);
   }
+
   to {
     transform: rotate(360deg) translateX(120px) rotate(-360deg);
   }
@@ -307,6 +322,7 @@
     transform: scale(0.8);
     opacity: 1;
   }
+
   100% {
     transform: scale(2);
     opacity: 0;
@@ -333,6 +349,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -342,6 +359,7 @@
   0% {
     transform: rotate(0deg) translateY(-150%) rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg) translateY(-150%) rotate(-360deg);
   }
@@ -355,6 +373,7 @@
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }

@@ -8,7 +8,7 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
   const [currentText, setCurrentText] = useState(0);
-  
+
   const loadingTexts = [
     "Initializing neural networks...",
     "Loading machine learning models...",
@@ -72,14 +72,14 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             {/* Rotating ring */}
             <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-primary animate-spin" style={{ animationDuration: "1.5s" }} />
             <div className="absolute inset-2 rounded-full border-2 border-transparent border-b-accent animate-spin" style={{ animationDuration: "2s", animationDirection: "reverse" }} />
-            
+
             {/* Center logo */}
             <div className="relative">
               <span className="font-display text-3xl font-bold text-gradient">DK</span>
               <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse" />
             </div>
           </div>
-          
+
           {/* Pulse rings */}
           <div className="absolute inset-0 rounded-full border border-primary/40 animate-pulse-ring" />
           <div className="absolute inset-0 rounded-full border border-primary/30 animate-pulse-ring" style={{ animationDelay: "0.5s" }} />
@@ -98,14 +98,14 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             <span className="font-mono text-xs text-muted-foreground">{loadingTexts[currentText]}</span>
             <span className="font-mono text-sm text-primary font-semibold">{progress}%</span>
           </div>
-          
+
           {/* Progress bar */}
           <div className="relative h-2 bg-secondary rounded-full overflow-hidden">
             {/* Animated background */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 animate-shimmer" style={{ backgroundSize: "200% 100%" }} />
-            
+
             {/* Progress fill */}
-            <div 
+            <div
               className="absolute left-0 top-0 h-full bg-gradient-primary rounded-full transition-all duration-100 ease-out"
               style={{ width: `${progress}%` }}
             >
@@ -119,9 +119,8 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             {[0, 1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  progress >= (i + 1) * 20 ? "bg-primary scale-100" : "bg-secondary scale-75"
-                }`}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${progress >= (i + 1) * 20 ? "bg-primary scale-100" : "bg-secondary scale-75"
+                  }`}
                 style={{ transitionDelay: `${i * 50}ms` }}
               />
             ))}

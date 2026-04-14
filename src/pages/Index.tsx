@@ -17,7 +17,7 @@ const Index = () => {
           name="description" 
           content="Dhanyasri K is an aspiring AI/ML Engineer and Full-Stack Developer specializing in React, Django, and Machine Learning." 
         />
-        <meta name="keywords" content="Dhanyasri, AI Engineer, ML Developer, React, Python, TensorFlow, CNN" />
+        <meta name="keywords" content="Dhanyasri, AI Engineer, ML Developer, React, Node.js, Python, TensorFlow, CNN" />
         <link rel="canonical" href="https://dhanyasri.dev" />
       </Helmet>
       

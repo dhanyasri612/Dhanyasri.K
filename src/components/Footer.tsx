@@ -1,62 +1,122 @@
-import { Github, Linkedin, Code2 } from "lucide-react";
+import { Github, Linkedin, Code2, Mail, Figma } from "lucide-react";
+import { motion } from "framer-motion";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/dhanyasri612", label: "GitHub" },
   { icon: Linkedin, href: "https://linkedin.com/in/dhanyasri-k-6b6902299", label: "LinkedIn" },
+  { icon: Figma, href: "https://www.figma.com/design/fECgy3WOUzc8MnWM0aH6cN/Untitled?t=WDxTV7tfcdZaQOQd-1", label: "Figma" },
   { icon: Code2, href: "https://leetcode.com/u/dhanyasrikalisamy", label: "LeetCode" },
+  { icon: Mail, href: "mailto:dhanyasrikalisamy@gmail.com", label: "Email" },
+];
+
+const quickLinks = [
+  { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Footer = () => {
   return (
-    <footer className="py-12 border-t border-border relative overflow-hidden">
-      {/* Subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-subtle opacity-30" />
+    <footer className="py-12 md:py-16 border-t border-border relative overflow-hidden">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-accent/5 rounded-full blur-[100px]" />
       
-      <div className="container mx-auto px-6 relative">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo */}
-          <a href="#" className="font-display text-2xl font-bold text-foreground group">
-            <span className="text-gradient">D</span>
-            <span className="text-foreground group-hover:text-primary transition-colors">K</span>
-            <span className="text-primary">.</span>
-          </a>
+      <div className="container mx-auto px-4 sm:px-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12">
+          {/* Brand & Description */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
+            <a href="#" className="inline-block font-display text-2xl font-bold text-foreground group hover:text-gradient transition-all">
+              <span className="text-gradient">D</span>
+              <span className="text-foreground group-hover:text-primary transition-colors">K</span>
+              <span className="text-primary">.</span>
+            </a>
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+              Building innovative AI/ML solutions and beautiful digital experiences with passion and precision.
+            </p>
+          </motion.div>
 
-          {/* Navigation */}
-          <nav className="flex flex-wrap justify-center gap-6">
-            {["About", "Work", "Skills", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="space-y-4"
+          >
+            <h3 className="font-display font-semibold text-foreground text-sm md:text-base">Quick Links</h3>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <a 
+                    href={link.href}
+                    className="text-muted-foreground hover:text-primary transition-colors text-sm hover:translate-x-1 inline-block"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-3">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
-                aria-label={social.label}
-              >
-                <social.icon className="w-5 h-5" />
-              </a>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="space-y-4"
+          >
+            <h3 className="font-display font-semibold text-foreground text-sm md:text-base">Connect</h3>
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target={social.label !== "Email" ? "_blank" : undefined}
+                  rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
+                  aria-label={social.label}
+                  title={social.label}
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-border text-center">
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Dhanyasri K. Crafted with passion & code.
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-8 md:my-12" />
+
+        {/* Bottom Section */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <p className="text-muted-foreground text-xs sm:text-sm text-center sm:text-left">
+            © {new Date().getFullYear()} Dhanyasri K. All rights reserved.
           </p>
-        </div>
+          <p className="text-muted-foreground text-xs sm:text-sm">
+            Crafted with <span className="text-primary font-semibold">passion</span> & <span className="text-accent font-semibold">code</span>
+          </p>
+          <a 
+            href="#" 
+            className="text-muted-foreground hover:text-primary text-xs sm:text-sm transition-colors font-mono"
+          >
+            Back to top ↑
+          </a>
+        </motion.div>
       </div>
     </footer>
   );

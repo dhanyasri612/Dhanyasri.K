@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Brain, Code2, Database, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -7,133 +7,118 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
-  const [currentText, setCurrentText] = useState(0);
-
-  const loadingTexts = [
-    "Initializing neural networks...",
-    "Loading machine learning models...",
-    "Compiling React components...",
-    "Preparing portfolio experience...",
-    "Almost ready..."
-  ];
+  const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
-    const progressInterval = setInterval(() => {
+    const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(progressInterval);
-          setTimeout(onComplete, 500);
+          clearInterval(timer);
+          setTimeout(() => {
+            setMounted(false);
+            setTimeout(onComplete, 800);
+          }, 400);
           return 100;
         }
         return prev + 1;
       });
-    }, 30);
+    }, 25);
 
-    return () => clearInterval(progressInterval);
+    return () => clearInterval(timer);
   }, [onComplete]);
 
-  useEffect(() => {
-    const textInterval = setInterval(() => {
-      setCurrentText((prev) => (prev + 1) % loadingTexts.length);
-    }, 600);
-
-    return () => clearInterval(textInterval);
-  }, []);
-
   return (
-    <div className="fixed inset-0 z-50 bg-background flex flex-col items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[200px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/15 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: "1s" }} />
-      </div>
-
-      {/* Floating Icons */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-[15%] left-[10%] animate-orbit opacity-30">
-          <Brain className="w-8 h-8 text-primary" />
-        </div>
-        <div className="absolute top-[20%] right-[15%] animate-orbit opacity-30" style={{ animationDelay: "-5s" }}>
-          <Code2 className="w-6 h-6 text-accent" />
-        </div>
-        <div className="absolute bottom-[25%] left-[20%] animate-orbit opacity-30" style={{ animationDelay: "-10s" }}>
-          <Database className="w-7 h-7 text-primary" />
-        </div>
-        <div className="absolute bottom-[30%] right-[25%] animate-orbit opacity-30" style={{ animationDelay: "-15s" }}>
-          <Sparkles className="w-6 h-6 text-accent" />
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center">
-        {/* Logo Animation */}
-        <div className="relative mb-12">
-          <div className="w-32 h-32 rounded-full border-2 border-primary/30 flex items-center justify-center relative">
-            {/* Rotating ring */}
-            <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-primary animate-spin" style={{ animationDuration: "1.5s" }} />
-            <div className="absolute inset-2 rounded-full border-2 border-transparent border-b-accent animate-spin" style={{ animationDuration: "2s", animationDirection: "reverse" }} />
-
-            {/* Center logo */}
-            <div className="relative">
-              <span className="font-display text-3xl font-bold text-gradient">DK</span>
-              <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse" />
-            </div>
+    <AnimatePresence>
+      {mounted && (
+        <motion.div
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center overflow-hidden"
+        >
+          {/* Ambient Background */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
           </div>
 
-          {/* Pulse rings */}
-          <div className="absolute inset-0 rounded-full border border-primary/40 animate-pulse-ring" />
-          <div className="absolute inset-0 rounded-full border border-primary/30 animate-pulse-ring" style={{ animationDelay: "0.5s" }} />
-        </div>
-
-        {/* Name */}
-        <h1 className="font-display text-3xl md:text-4xl font-bold mb-4">
-          <span className="text-gradient">Dhanyasri K</span>
-        </h1>
-        <p className="text-muted-foreground font-mono text-sm mb-12">AI/ML Engineer & Full-Stack Developer</p>
-
-        {/* Progress Bar Container */}
-        <div className="w-80 md:w-96">
-          {/* Progress percentage */}
-          <div className="flex justify-between items-center mb-3">
-            <span className="font-mono text-xs text-muted-foreground">{loadingTexts[currentText]}</span>
-            <span className="font-mono text-sm text-primary font-semibold">{progress}%</span>
-          </div>
-
-          {/* Progress bar */}
-          <div className="relative h-2 bg-secondary rounded-full overflow-hidden">
-            {/* Animated background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 animate-shimmer" style={{ backgroundSize: "200% 100%" }} />
-
-            {/* Progress fill */}
-            <div
-              className="absolute left-0 top-0 h-full bg-gradient-primary rounded-full transition-all duration-100 ease-out"
-              style={{ width: `${progress}%` }}
+          <div className="relative z-10 flex flex-col items-center">
+            {/* Minimalist Logo Animation */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="relative mb-12"
             >
-              {/* Glow effect */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full blur-md" />
+              <div className="w-24 h-24 flex items-center justify-center">
+                <motion.div
+                  animate={{ 
+                    rotate: 360,
+                    borderRadius: ["40%", "50%", "40%"]
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 border border-primary/20"
+                />
+                <motion.div
+                  animate={{ 
+                    rotate: -360,
+                    borderRadius: ["50%", "35%", "50%"]
+                  }}
+                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-2 border border-primary/10"
+                />
+                <span className="text-4xl font-display font-bold tracking-tighter text-gradient">DK</span>
+              </div>
+            </motion.div>
+
+            {/* Typography */}
+            <div className="text-center mb-10 overflow-hidden">
+              <motion.h1 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="text-xl md:text-2xl font-display font-bold tracking-tight text-foreground mb-2"
+              >
+                Dhanyasri K
+              </motion.h1>
+              <motion.p
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground"
+              >
+                Portfolio Experience
+              </motion.p>
+            </div>
+
+            {/* Elegant Progress Indicator */}
+            <div className="w-48 relative">
+              <div className="h-[1px] w-full bg-border/50 absolute top-1/2 -translate-y-1/2" />
+              <motion.div 
+                className="h-[1px] bg-primary absolute top-1/2 -translate-y-1/2 origin-left"
+                style={{ width: `${progress}%` }}
+              />
+              
+              <div className="flex justify-between mt-6">
+                <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-widest">Loading</span>
+                <span className="text-[9px] font-mono text-primary font-bold">{progress}%</span>
+              </div>
             </div>
           </div>
 
-          {/* Loading dots */}
-          <div className="flex justify-center gap-2 mt-6">
-            {[0, 1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${progress >= (i + 1) * 20 ? "bg-primary scale-100" : "bg-secondary scale-75"
-                  }`}
-                style={{ transitionDelay: `${i * 50}ms` }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom text */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <p className="text-xs text-muted-foreground/50 font-mono">Crafting experiences with code & creativity</p>
-      </div>
-    </div>
+          {/* Minimalist Bottom Note */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="absolute bottom-10"
+          >
+            <p className="text-[8px] font-mono uppercase tracking-[0.5em] text-muted-foreground">© MMXXVI</p>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
 export default LoadingScreen;
+

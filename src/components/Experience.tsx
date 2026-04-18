@@ -1,92 +1,102 @@
-import { Briefcase, Calendar, ArrowUpRight } from "lucide-react";
+import { Briefcase, Calendar, MapPin, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
-import AnimatedSection, { fadeInUp, staggerContainer } from "./AnimatedSection";
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.5, delay, ease: "easeOut" },
+});
+
+const experiences = [
+  {
+    role: "Machine Learning Intern",
+    company: "Nitroware Technologies Pvt Ltd.",
+    location: "Remote",
+    period: "Jan 2025 – Feb 2025",
+    bullets: [
+      "Developed a web app for bone tumor detection using HTML/CSS, enabling user-friendly interaction with ML models.",
+      "Built and optimized a CNN model to analyze medical images and classify tumor presence with improved accuracy.",
+      "Authored documentation and reproducibility protocols for knowledge transfer to future teams.",
+    ],
+    tags: ["Python", "CNN", "TensorFlow", "HTML/CSS", "Medical Imaging"],
+    accent: "bg-teal-500",
+  },
+];
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-16 md:py-32 relative overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="max-w-4xl mx-auto"
-        >
-          <motion.span 
-            variants={fadeInUp}
-            className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-mono mb-4 md:mb-6"
-          >
-            // Experience
-          </motion.span>
-          <motion.h2 
-            variants={fadeInUp}
-            className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-10 md:mb-16"
-          >
-            Work <span className="text-gradient">Experience</span>
-          </motion.h2>
+    <section id="experience" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-dark" />
+      
+      <div className="container mx-auto px-6 sm:px-10 lg:px-16 relative">
 
-          {/* Experience Card */}
-          <motion.div 
-            variants={fadeInUp}
-            className="relative pl-6 sm:pl-8 border-l-2 border-border"
-          >
-            {/* Timeline dot */}
-            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gradient-primary shadow-glow" />
-            
-            <div className="group p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl border-gradient hover-lift hover-glow transition-all duration-300">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-4 md:mb-6">
-                <div>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2 group-hover:text-gradient transition-all">
-                    Machine Learning Intern
-                  </h3>
-                  <p className="text-primary font-medium text-base sm:text-lg">
-                    Nitroware Technologies Pvt Ltd.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary text-muted-foreground text-xs sm:text-sm font-mono w-fit">
-                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
-                  Jan 2025 - Feb 2025
-                </div>
-              </div>
-
-              <ul className="space-y-3 sm:space-y-4 text-muted-foreground text-sm sm:text-base">
-                <li className="flex items-start gap-2 sm:gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                  <span>
-                    Developed a web application for <span className="text-foreground font-medium">bone tumor detection</span> using HTML/CSS, 
-                    enabling user-friendly interaction with ML models.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 sm:gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                  <span>
-                    Built and optimized a <span className="text-foreground font-medium">CNN model</span> to analyze medical images and 
-                    classify tumor presence with improved accuracy over baselines.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2 sm:gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
-                  <span>
-                    Authored comprehensive documentation and reproducibility protocols for 
-                    knowledge transfer to future teams.
-                  </span>
-                </li>
-              </ul>
-
-              <div className="mt-4 md:mt-6 flex flex-wrap gap-1.5 sm:gap-2">
-                {["Python", "CNN", "TensorFlow", "HTML/CSS", "Medical Imaging"].map((tag) => (
-                  <span 
-                    key={tag}
-                    className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs font-mono rounded-full bg-secondary text-muted-foreground"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+        {/* Section label */}
+        <motion.div {...fadeUp(0)} className="flex items-center gap-3 mb-10">
+          <div className="h-px w-8 bg-primary/50" />
+          <span className="text-xs font-mono text-primary tracking-[0.25em] uppercase">Experience</span>
         </motion.div>
+
+        <motion.h2
+          {...fadeUp(0.1)}
+          className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-16"
+        >
+          Professional <span className="text-gradient">Journey</span>
+        </motion.h2>
+
+        <div className="relative space-y-12">
+          {/* Vertical line */}
+          <div className="absolute left-[11px] top-2 bottom-2 w-px bg-border/50 hidden md:block" />
+
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={i}
+              {...fadeUp(0.2 + i * 0.1)}
+              className="relative md:pl-12 group"
+            >
+              {/* Timeline marker */}
+              <div className={`absolute left-0 top-1.5 w-[22px] h-[22px] rounded-full border-4 border-background ${exp.accent} shadow-glow hidden md:block z-10 group-hover:scale-125 transition-transform duration-300`} />
+
+              <div className="flex flex-col lg:flex-row gap-8">
+                {/* Left side: Role & Company */}
+                <div className="lg:w-1/3">
+                  <div className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-widest mb-2">
+                    <Calendar className="w-3 h-3" /> {exp.period}
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-1">{exp.role}</h3>
+                  <p className="text-primary font-semibold text-sm mb-4">{exp.company}</p>
+                  <div className="flex items-center gap-2 text-muted-foreground text-xs">
+                    <MapPin className="w-3 h-3" /> {exp.location}
+                  </div>
+                </div>
+
+                {/* Right side: Details */}
+                <div className="lg:w-2/3 p-6 sm:p-8 rounded-2xl border border-border/50 bg-card/40 backdrop-blur-sm group-hover:border-primary/30 transition-all duration-300">
+                  <ul className="space-y-4 mb-8">
+                    {exp.bullets.map((bullet, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
+                        <ChevronRight className="w-4 h-4 mt-0.5 text-primary/60 flex-shrink-0" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-[10px] font-mono rounded-lg border border-border/40 bg-secondary/30 text-muted-foreground hover:border-primary/20 transition-colors"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

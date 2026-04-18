@@ -1,125 +1,139 @@
-import { Brain, Code2, Sparkles, GraduationCap } from "lucide-react";
+import { GraduationCap, Download, Zap, Brain, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
-import AnimatedSection, { staggerContainer, fadeInUp, fadeInLeft, fadeInRight } from "./AnimatedSection";
 
-const highlights = [
+const education = [
   {
-    icon: Brain,
-    title: "AI & Machine Learning",
-    description: "Building CNN pipelines for medical imaging and emotion-aware experiences.",
+    level: "B.E. Computer Science (AI & ML)",
+    subtitle: "Honours in Full-Stack Development",
+    school: "KPR Institute of Engineering and Technology",
+    location: "Coimbatore",
+    year: "2023 – 2027",
+    grade: "CGPA: 8.86",
   },
   {
-    icon: Code2,
-    title: "Full-Stack Development",
-    description: "Shipping reliable React, Node.js/Express.js, Django, and Flask apps end-to-end.",
+    level: "HSC (12th)",
+    school: "Literacy Mission Matriculation Higher Secondary School",
+    location: "",
+    year: "2022 – 2023",
+    grade: "94.16%",
   },
   {
-    icon: Sparkles,
-    title: "Creative Problem Solver",
-    description: "Translating fuzzy ideas into usable, measurable outcomes.",
+    level: "SSLC (10th)",
+    school: "Literacy Mission Matriculation Higher Secondary School",
+    location: "",
+    year: "2020 – 2021",
+    grade: "94.16%",
   },
 ];
 
+const quickFacts = [
+  { icon: Brain, label: "AI & ML Specialist" },
+  { icon: Zap, label: "Fast Learner" },
+  { icon: Rocket, label: "Solution Oriented" },
+];
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.5, delay, ease: "easeOut" },
+});
+
 const About = () => {
   return (
-    <section id="about" className="py-16 md:py-32 relative overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-gradient-subtle opacity-50" />
-      
-      <div className="container mx-auto px-4 sm:px-6 relative">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          {/* Left Column - Main Content */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="lg:col-span-7"
-          >
-            <motion.span
-              variants={fadeInUp}
-              className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-mono mb-4 md:mb-6"
-            >
-              // About Me
-            </motion.span>
-            
+    <section id="about" className="py-20 md:py-28 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-dark" />
+
+      <div className="container mx-auto px-6 sm:px-10 lg:px-16 relative">
+
+        {/* Section label */}
+        <motion.div {...fadeUp(0)} className="flex items-center gap-3 mb-10">
+          <div className="h-px w-8 bg-primary/50" />
+          <span className="text-xs font-mono text-primary tracking-[0.25em] uppercase">About Me</span>
+        </motion.div>
+
+        {/* ── Top: heading + bio ── */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 mb-16">
+
+          {/* Left: heading + bio */}
+          <div>
             <motion.h2
-              variants={fadeInUp}
-              className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 leading-tight"
+              {...fadeUp(0.1)}
+              className="font-display text-2xl sm:text-3xl font-bold leading-tight text-foreground mb-6"
             >
-              Designing quietly confident <span className="text-gradient">intelligent</span> digital experiences
+              Building{" "}
+              <span className="text-gradient">intelligent</span>{" "}
+              systems & seamless experiences
             </motion.h2>
+
+            <motion.p {...fadeUp(0.2)} className="text-[15px] text-muted-foreground leading-relaxed text-justify mb-8">
+              CS student specializing in AI & ML at KPR Institute, Coimbatore.
+              I pair product thinking with hands-on engineering — from deep
+              learning models to full-stack apps — to make intelligent systems
+              feel simple and accessible.
+            </motion.p>
             
-            <motion.div
-              variants={fadeInUp}
-              className="space-y-4 md:space-y-6 text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed"
-            >
-              <p>
-                I'm a <span className="text-foreground font-medium">Computer Science student</span> focused on AI & ML at
-                KPR Institute of Engineering and Technology, Coimbatore. I like pairing clear product thinking with
-                hands-on building so intelligent systems feel simple to use.
-              </p>
-              <p>
-                Recently at <span className="text-foreground font-medium">Nitroware Technologies</span>, I prototyped
-                medical imaging models that improved tumor detection accuracy and delivered them with lightweight
-                dashboards so clinicians could trust the outputs.
-              </p>
-            </motion.div>
-
-            {/* Education Card */}
-            <motion.div 
-              variants={fadeInUp}
-              className="mt-8 md:mt-10 p-4 sm:p-6 rounded-2xl border border-border hover:border-primary/50 bg-gradient-subtle hover:bg-primary/5 transition-all duration-300 group"
-            >
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="p-2.5 sm:p-3 rounded-xl bg-primary/20 text-primary flex-shrink-0 group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-300">
-                  <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-display text-base sm:text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
-                    B.E. Computer Science (AI & ML)
-                  </h3>
-                  <p className="text-muted-foreground text-sm sm:text-base mb-2 truncate">
-                    KPR Institute of Engineering and Technology
-                  </p>
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
-                    <span className="text-muted-foreground">2023 - 2027</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Column - Highlight Cards */}
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="lg:col-span-5 space-y-4 md:space-y-6"
-          >
-            {highlights.map((item, index) => (
-              <motion.div
-                key={item.title}
-                variants={fadeInRight}
-                className="group p-4 sm:p-6 rounded-2xl border-gradient hover-lift hover-glow transition-all duration-300"
+            <motion.div {...fadeUp(0.3)} className="flex flex-wrap gap-4">
+              <a
+                href="/ML_RESUME (1).pdf"
+                download="Dhanyasri_K_Resume.pdf"
+                target="_blank"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary/10 border border-primary/20 text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
-                <div className="flex items-start gap-4 sm:gap-5">
-                  <div className="p-2.5 sm:p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-gradient-primary group-hover:text-primary-foreground transition-all duration-300 flex-shrink-0">
-                    <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="font-display text-lg sm:text-xl font-semibold mb-1 sm:mb-2 text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm sm:text-base">
-                      {item.description}
-                    </p>
-                  </div>
+                <Download className="w-4 h-4" /> Download Resume
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right: Quick Facts */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
+            {quickFacts.map((fact, i) => (
+              <motion.div
+                key={fact.label}
+                {...fadeUp(0.3 + i * 0.1)}
+                className="flex items-center gap-4 p-5 rounded-2xl border border-border/50 bg-card/40 backdrop-blur-sm hover:border-primary/40 transition-all duration-300"
+              >
+                <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                  <fact.icon className="w-5 h-5" />
                 </div>
+                <span className="text-sm font-semibold text-foreground">{fact.label}</span>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
+        </div>
+
+        {/* ── Education timeline ── */}
+        <motion.div {...fadeUp(0.4)} className="flex items-center gap-3 mb-8">
+          <GraduationCap className="w-4 h-4 text-primary" />
+          <span className="text-xs font-mono text-primary tracking-[0.2em] uppercase">Education</span>
+        </motion.div>
+
+        <div className="flex flex-col gap-4">
+          {education.map((edu, i) => (
+            <motion.div
+              key={edu.level}
+              {...fadeUp(0.45 + i * 0.08)}
+              className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl border border-border/50 bg-card/40 backdrop-blur-sm hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+            >
+              <div className="flex items-center gap-5 min-w-0">
+                {/* Timeline dot */}
+                <div className="w-2.5 h-2.5 rounded-full bg-primary/30 flex-shrink-0 group-hover:bg-primary group-hover:shadow-glow transition-all" />
+                <div className="min-w-0">
+                  <p className="text-sm md:text-base font-bold text-foreground">{edu.level}</p>
+                  {"subtitle" in edu && (
+                    <p className="text-[11px] font-mono font-medium text-primary/70 mt-0.5">{edu.subtitle}</p>
+                  )}
+                  <p className="text-xs md:text-sm text-muted-foreground mt-1">
+                    {edu.school}{edu.location ? ` · ${edu.location}` : ""}
+                  </p>
+                </div>
+              </div>
+              <div className="flex-shrink-0 text-left sm:text-right pl-7 sm:pl-0">
+                <p className="text-sm font-mono font-bold text-primary">{edu.grade}</p>
+                <p className="text-xs text-muted-foreground mt-1">{edu.year}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
       </div>

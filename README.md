@@ -1,73 +1,68 @@
-# Welcome to your Lovable project
+# Dhanyasri K - Professional Portfolio 🚀
 
-## Project info
+Welcome to my professional portfolio! This project is a highly interactive, responsive web application showcasing my journey as an **AI/ML Engineer** and **Full-Stack Developer**.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## ✨ Key Features
 
-## How can I edit this code?
+- **Personalized Branding**: Fully customized with unique "DK" branding, minimalist loading screen, and professional design system.
+- **Categorized Projects**: Neatly organized showcase into **AI / ML**, **Full-Stack**, and **UI/UX Design** sections.
+- **Interactive UI/UX**:
+  - **3D Tilt Interaction**: Tactile experience on profile cards and project showcases.
+  - **Dynamic Particles**: Theme-aware interactive coding symbols reacting to cursor movement.
+  - **Typewriter Effect**: Engaging introduction highlighting diverse technical roles.
+  - **Vertical Timeline**: Professional visualization of career and academic milestones.
+- **Modern Tech Stack**: Built with high-performance tools ensuring a seamless user experience.
+- **Theme Support**: Flawless switching between **Light** and **Dark** modes with optimized contrast.
+- **Direct Resume Access**: Professional credential downloading integrated directly into the interface.
 
-There are several ways of editing your application.
+## 🛠️ Built With
 
-**Use Lovable**
+- **Framework**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + [Shadcn UI](https://ui.shadcn.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Interactions**: [tsParticles](https://particles.js.org/), [React Parallax Tilt](https://github.com/mkosir/react-parallax-tilt)
+- **Icons**: [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🚀 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [npm](https://www.npmjs.com/) or [bun](https://bun.sh/)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/dhanyasri612/Dhanyasri.K.git
+   cd Dhanyasri.K
+   ```
 
-Follow these steps:
+2. **Install dependencies**:
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. **Build for production**:
+   ```bash
+   npm run build
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 📬 Contact
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Let's build something amazing together!
 
-**Edit a file directly in GitHub**
+- **Email**: [dhanyasrikalisamy@gmail.com](mailto:dhanyasrikalisamy@gmail.com)
+- **LinkedIn**: [Dhanyasri K](https://linkedin.com/in/dhanyasri-k-6b6902299)
+- **GitHub**: [@dhanyasri612](https://github.com/dhanyasri612)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+© 2026 Dhanyasri K. Crafted with passion & code.
